@@ -41,7 +41,7 @@ shk = np.arange(start=0, stop=a, step=k)
 for i in range(0, a-1, k):
     dH = 0
     dU = 0
-    cv[i] = calc_cv(T[i], phi[i], m)
+    cv[i] = calc_cv(T[i], phi[i], m,data)
     dL[i] = calc_dL(p[i], phi[i])
     dQw[i] = calc_dQw(phi[i], T[i], V[i])
     dQx[i] = calc_dQx(phi[i])
@@ -57,8 +57,8 @@ for i in range(0, a-1, k):
 
 # Графики
 
-fig = plt.figure(figsize=(20, 20))
-gs = GridSpec(ncols=3, nrows=3, figure=fig)
+fig = plt.figure(figsize=(25, 25))
+gs = GridSpec(ncols=3, nrows=3, figure=fig,wspace=0.5, hspace=1)
 phi_graph = plt.subplot(gs[0, 0])
 phi_graph.plot(shk, phi)
 
@@ -138,7 +138,7 @@ L = 0
 for i in range(0, a-1):
     dH = 0
     dU = 0
-    cv1[i] = calc_cv(T1[i], phi1[i], m)
+    cv1[i] = calc_cv(T1[i], phi1[i], m,data)
     dL1[i] = calc_dL(p1[i], phi1[i])
     dQw1[i] = calc_dQw(phi1[i], T1[i], V1[i])
     dQx1 = 0
@@ -159,21 +159,21 @@ p_graph.set_ylabel("p")
 p_graph.set_title("p")
 p_graph.legend(['С учетом сгорания', 'Без учета сгорания'])
 plt.grid()
-fig2 = plt.figure(figsize=(20, 10))
-gs2 = GridSpec(ncols=3, nrows=1, figure=fig2)
+fig2 = plt.figure(figsize=(25, 25))
+gs2 = GridSpec(ncols=1, nrows=3, figure=fig2,wspace=1, hspace=1)
 P_graph = plt.subplot(gs[0, 0])
 P_graph.plot(phi, p)
 P_graph.set_xlabel("phi")
 P_graph.set_ylabel("P")
 P_graph.set_title('Давление от угла поворота коленчатого вала')
 plt.grid()
-T_graph = plt.subplot(gs[0, 1])
+T_graph = plt.subplot(gs[1, 0])
 T_graph.plot(phi, T)
 T_graph.set_xlabel("phi")
 T_graph.set_ylabel("T(phi)")
 T_graph.set_title('Температура от угла поворота коленчатого вала')
 plt.grid()
-PP_graph = plt.subplot(gs[0, 2])
+PP_graph = plt.subplot(gs[2, 0])
 PP_graph.plot(V, p)
 PP_graph.set_xlabel("V")
 PP_graph.set_ylabel("P(V)")
